@@ -24,6 +24,10 @@ public class ObstacleGenerator : MonoBehaviour
     /// ‰½•b‘‚­‚·‚é‚Ì‚©‚ğŒˆ‚ß‚é•Ï”
     /// </summary>
     [SerializeField] float m_speedUpNum = 0.25f;
+    /// <summary>
+    /// Å‚‘¬“x
+    /// </summary>
+    [SerializeField] float m_speedMaxNum = 1f;
 
     void Start()
     {
@@ -50,6 +54,11 @@ public class ObstacleGenerator : MonoBehaviour
         {
             m_speedUpTimer = 0f;
             m_wallGenerateInterval -= m_speedUpNum;
+            if (m_wallGenerateInterval < m_speedMaxNum)
+            {
+                m_wallGenerateInterval = m_speedMaxNum;
+            }
+            
         }
     }
 }
