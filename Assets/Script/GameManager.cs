@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     //オブジェクト
-    GameObject gameOver;
-    Text _gameover;
+    [SerializeField] GameObject gameOverUi;
+    //Text _gameover;
 
     GameObject time;
     Text time_tx;
@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
         time = GameObject.Find("Time");
         time_tx = time.GetComponent<Text>();
 
-        gameOver = GameObject.Find("GameOverText");
-        _gameover = gameOver.GetComponent<Text>();
+        //gameOverUi = GameObject.Find("GameOverUI").GetComponent<GameObject>();
+        //_gameover = gameOver.GetComponent<Text>();
 
         
     }
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("ゲームオーバー");
         Time.timeScale = 0f;
-        _gameover.text = "GameOver"; 
+        gameOverUi.SetActive(true);
+
     }
 }
