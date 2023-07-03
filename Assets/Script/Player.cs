@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     int _jumpCount = 0;
     //ゲームマネージャー
     GameManager gameManager;
+    /// <summary>
+    /// プレイヤーの状態
+    /// </summary>
+    PlayerCondition _playerCondition;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,8 @@ public class Player : MonoBehaviour
 
         //ゲームマネージャーを取得
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        _playerCondition = PlayerCondition.Normal;
     }
 
     // Update is called once per frame
@@ -52,5 +58,22 @@ public class Player : MonoBehaviour
             gameManager.GameOver();
             Destroy(gameObject);
         }
+
+        if(collision.gameObject.tag == "ItemGod")
+        {
+            _playerCondition = PlayerCondition.God;
+            Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag == "Enemy" && _playerCondition == PlayerCondition.God)
+        {
+            Destroy(collision.gameObject);
+            _playerCondition = PlayerCondition.Normal;
+        }
+    }
+
+    enum PlayerCondition
+    {
+        Normal,
+        God,
     }
 }

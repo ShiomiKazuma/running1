@@ -44,9 +44,10 @@ public class ObstacleGenerator : MonoBehaviour
         if (m_timer > m_wallGenerateInterval)
         {
             m_timer = 0f;   // タイマーをリセットする
-            int index = Random.Range(0, m_wallPrefabs.Length);  // 配列からオブジェクトを選ぶためのインデックス（添字）をランダムに選ぶ
-            GameObject go = Instantiate(m_wallPrefabs[index]);  // プレハブからオブジェクトを生成して、変数 go に入れる
-            go.transform.position = m_position[index];   // 生成したオブジェクトの位置を定める
+            int indexPrefabs = Random.Range(0, m_wallPrefabs.Length);  // 配列からオブジェクトを選ぶためのインデックス（添字）をランダムに選ぶ
+            GameObject go = Instantiate(m_wallPrefabs[indexPrefabs]);  // プレハブからオブジェクトを生成して、変数 go に入れる
+            int indexPosition = Random.Range(0, m_position.Length);
+            go.transform.position = m_position[indexPosition];   // 生成したオブジェクトの位置を定める
         }
 
         //スピードアップ
