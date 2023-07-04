@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     /// プレイヤーの状態
     /// </summary>
     PlayerCondition _playerCondition;
+    /// <summary>
+    /// フォワードアイテム獲得時の前進距離
+    /// </summary>
+    [SerializeField] float _forwardPower = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +73,16 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             _playerCondition = PlayerCondition.Normal;
         }
+    }
+
+    public void Forward()
+    {
+        Transform transform = this.transform;
+
+        Vector3 pos = transform.position;
+        pos.x += _forwardPower;
+
+        transform.position = pos;
     }
 
     enum PlayerCondition
