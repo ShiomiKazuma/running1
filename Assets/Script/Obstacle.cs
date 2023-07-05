@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour
             speed = value;
         }
     }
-    void Update()
+    void FixedUpdate()
     {
         transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
     }
