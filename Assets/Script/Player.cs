@@ -38,6 +38,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_playerCondition == PlayerCondition.Normal) 
+        { 
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
+        }
+        else if(_playerCondition == PlayerCondition.God)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+
         if(Input.GetButtonDown("Jump") && _jumpCount < 2)
         {
             _rb.AddForce(transform.up * jump_power, ForceMode2D.Impulse);
