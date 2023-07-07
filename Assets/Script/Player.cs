@@ -16,11 +16,11 @@ public class Player : MonoBehaviour
     /// <summary>
     /// プレイヤーの状態
     /// </summary>
-    PlayerCondition _playerCondition;
+    public PlayerCondition _playerCondition;
     /// <summary>
     /// フォワードアイテム獲得時の前進距離
     /// </summary>
-    [SerializeField] float _forwardPower = 1.0f;
+    [SerializeField] public float _forwardPower = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,10 +54,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-           //_rb.AddForce(transform.right * run_power, ForceMode2D.Force);
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -72,16 +68,6 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "ItemGod")
-        {
-            _playerCondition = PlayerCondition.God;
-            Destroy(collision.gameObject);
-        }
-        if(collision.gameObject.tag == "Enemy" && _playerCondition == PlayerCondition.God)
-        {
-            Destroy(collision.gameObject);
-            _playerCondition = PlayerCondition.Normal;
-        }
     }
 
     public void Forward()
@@ -94,7 +80,7 @@ public class Player : MonoBehaviour
         transform.position = pos;
     }
 
-    enum PlayerCondition
+    public enum PlayerCondition
     {
         Normal,
         God,
