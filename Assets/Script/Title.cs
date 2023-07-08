@@ -12,7 +12,14 @@ public class Title : MonoBehaviour
     /// <summary>フェードアウト完了までにかかる時間（秒）/summary>
     [SerializeField] float _fadeTime = 1;
     float _timer = 0;
+    Text _text;
 
+    private void Start()
+    {
+        float bestScore = PlayerPrefs.GetFloat("BestScore", 0.0f);
+        _text = GameObject.Find("BestScore").GetComponent<Text>();
+        _text.text = "Best Score:" + bestScore.ToString() + "m";
+    }
     //startボタンが押された時の処理
     public void PressStart()
     {

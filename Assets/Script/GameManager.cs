@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     GameObject time;
     Text time_tx;
     Text _score;
+    float _nowScore;
 
     float _time;
     // Start is called before the first frame update
@@ -40,9 +41,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("ゲームオーバー");
         Time.timeScale = 0f;
         gameOverUi.SetActive(true);
-
+        
         _score = GameObject.Find("Score").GetComponent<Text>();
         _score.text = _time.ToString("F2") + "ｍ";
+        _nowScore = float.Parse(_time.ToString("F2"));
 
+        float bestScore = PlayerPrefs.GetFloat("BestScore", 0.0f);
+        if (bestScore < _nowScore)
+        {
+            PlayerPrefs.SetFloat("BestScore", _nowScore);
+        }
     }
 }
