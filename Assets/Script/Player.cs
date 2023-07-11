@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPause
 {
     //ƒWƒƒƒ“ƒv—Í’²®
     [SerializeField] float jump_power;
+    float _saveJumpPower;
     //‘–—Í’²®
     [SerializeField] public float run_power;
     Rigidbody2D _rb;
@@ -80,9 +81,22 @@ public class Player : MonoBehaviour
         transform.position = pos;
     }
 
+    public void Pause()
+    {
+        _saveJumpPower = jump_power;
+        jump_power = 0;
+    }
+
+    public void Resume()
+    {
+        jump_power = _saveJumpPower;
+    }
+
     public enum PlayerCondition
     {
         Normal,
         God,
     }
+
+    
 }

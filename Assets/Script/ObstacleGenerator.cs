@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleGenerator : MonoBehaviour
+public class ObstacleGenerator : MonoBehaviour,IPause
 {
     /// <summary>壁として生成するプレハブ</summary>
     [SerializeField] GameObject[] m_wallPrefabs = null;
@@ -28,6 +28,16 @@ public class ObstacleGenerator : MonoBehaviour
     /// 最高速度
     /// </summary>
     [SerializeField] float m_speedMaxNum = 1f;
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+    }
 
     void Start()
     {
